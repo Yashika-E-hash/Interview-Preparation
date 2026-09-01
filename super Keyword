@@ -1,1 +1,61 @@
+📌 What is super keyword?
 
+super is a reference variable in Java.
+It refers to the immediate parent class object.
+Used to access parent constructors, methods, and variables.
+
+🎯 Usage of super
+
+Call parent constructor → super() must be the first statement in child constructor.
+
+Call parent method → super.methodName() invokes parent’s version of an overridden method.
+
+Access parent variables → Resolves ambiguity when child has variables with same name.
+
+Constructor chaining → Used when parent has parameterized constructors (no default).
+
+Differentiate overridden methods → Ensures parent logic is preserved alongside child logic.
+
+
+
+⚡ Tricky Interview Questions & Notes
+
+Q1: Can you use super in a static method?
+
+❌ No. Static context has no object, so super is invalid.
+
+Q2: Can you call both this() and super() in the same constructor?
+
+❌ No. Only one constructor call allowed, and it must be the first statement.
+✅ Indirect chaining is possible: this() calls another constructor, which then calls super().
+
+Q3: What happens if parent has no default constructor?
+
+Compiler inserts super(); automatically.
+If parent has only parameterized constructors, you must explicitly call super(arguments).
+
+Q4: Can super access private members of parent?
+
+❌ No. Private members are hidden.
+✅ Access only via parent’s public/protected methods.
+
+Q5: Can you use super to call parent’s overridden method?
+
+✅ Yes. super.methodName() calls parent’s version even if overridden in child.
+
+
+
+📝 Quick Revision Lines (Interview Style)
+
+"super refers to the immediate parent object."
+
+"super() must be the first statement in a child constructor."
+
+"If parent has no default constructor, child must explicitly call a parameterized one."
+
+"super.methodName() invokes parent’s version of an overridden method."
+
+"super cannot be used in static context or to access private members directly."
+
+
+link:https://www.geeksforgeeks.org/java/super-keyword/
