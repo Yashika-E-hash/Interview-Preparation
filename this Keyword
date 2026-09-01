@@ -1,0 +1,57 @@
+------------------------------------------this keyword----------------------------------------------
+📌 What is this keyword?
+
+this is a reference variable in Java.
+It always refers to the current object of the class.
+Automatically passed to non‑static methods and constructors.
+
+
+🎯 Usage of this
+
+Resolve ambiguity → Distinguish between instance variables and parameters when names clash.
+
+Call another constructor → Use this() for constructor chaining (must be first statement).
+
+Return current object → Enables method chaining (fluent APIs).
+
+Pass current object → Send current object as argument to another method/constructor.
+
+Refer to outer class → In inner classes, OuterClass.this refers to outer object.
+
+Assign to another reference → Store current object in another variable.
+
+
+
+⚡ Tricky Interview Questions & Notes
+
+Q1: Why can’t you use this in a static method?
+
+Static methods belong to the class, not an object.
+this refers to the current object.
+No object exists in static context → compile‑time error.
+
+Q2: Difference between this and super?
+
+this → current class object.
+super → parent class object.
+this() calls another constructor in same class; super() calls parent constructor.
+
+Q3: Can you call two constructors using this() in one constructor?
+
+❌ Not allowed. Only one this() or super() call, and it must be the first statement.
+To chain multiple constructors, do it indirectly (constructor chaining).
+
+Q4: Can you use this in an inner class?
+
+Yes. this refers to inner class object.
+To access outer class object → OuterClass.this.
+
+Q5: Can you return this from a method?
+
+✅ Yes. Used for method chaining (e.g., StringBuilder.append()).
+
+Q6: Can you use this in a static nested class?
+
+this refers to the nested class object itself, not the outer class.
+
+Outer class object must be created explicitly.
