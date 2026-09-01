@@ -1,1 +1,146 @@
+-----------------------------------------------Encapsulation--------------------------------------------------------
 
+Encapsulation in Java means bundling data and methods into a single unit (class) and restricting direct access to the internal 
+state using access modifiers. It is widely used in real‑world applications like banking systems, healthcare records, 
+and enterprise software to protect sensitive data and enforce rules. 
+
+📌 What is Encapsulation?
+
+Definition: Encapsulation is an OOP principle that hides internal details of a class and exposes only a controlled interface.
+
+How it works:
+
+Declare fields as private.
+Provide public/protected getters and setters for controlled access.
+Add validation logic inside setters or methods.
+Analogy: Like a capsule — medicine (data) is inside, and you interact only through the protective shell (methods). 
+
+🎯 Uses of Encapsulation
+
+Data hiding → Prevents unauthorized direct access to fields.
+Validation → Ensures only valid values are set (e.g., age cannot be negative).
+Maintainability → Internal implementation can change without affecting external code.
+Security → Protects sensitive information like passwords or account balances.
+Flexibility → Allows controlled modifications through well‑defined methods.
+
+📌 Where Encapsulation is Used
+
+Banking systems → Protect account balance, enforce deposit/withdraw rules.
+
+Healthcare applications → Secure patient records, allow controlled access.
+
+Enterprise software → Hide complex internal logic, expose clean APIs.
+
+Design patterns → Encapsulation is the foundation for many patterns like Singleton, Builder, and Factory.
+
+📘 Example
+java
+class BankAccount {
+    private long balance;  // private field
+
+    public BankAccount(long openingBalance) {
+        if (openingBalance < 0) {
+            throw new IllegalArgumentException("Balance cannot be negative");
+        }
+        this.balance = openingBalance;
+    }
+
+    public long getBalance() {
+        return balance;  // controlled access
+    }
+
+    public void deposit(long amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Deposit must be positive");
+        }
+        balance += amount;
+    }
+
+    public void withdraw(long amount) {
+        if (amount > balance) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+        balance -= amount;
+    }
+}
+🖥️ Usage:
+
+java
+BankAccount acc = new BankAccount(1000);
+acc.deposit(500);   // ✅ valid
+acc.withdraw(2000); // ❌ throws error
+System.out.println(acc.getBalance()); // 1500
+
+
+Tricky Encapsulation Questions with Answers
+
+Q1: Access modifiers  
+Q: If a field is declared private but has a public getter, is the data truly hidden? How does encapsulation still help?
+A: Yes, the field is hidden from direct access. Encapsulation still helps because you control how the data is exposed. You can make it read‑only (getter only), add validation in setters, or change internal representation without breaking external code.
+
+Q2: Validation logic  
+Q: Why do we say encapsulation enforces validation, and how would you prevent setting a negative age in a Person class?
+A: Encapsulation allows rules inside setters. Example:
+
+java
+public void setAge(int age) {
+    if (age < 0) throw new IllegalArgumentException("Age cannot be negative");
+    this.age = age;
+}
+Q3: Encapsulation vs Abstraction  
+Q: Both hide details — but what’s the difference?
+A: Encapsulation hides data implementation (fields, methods) using access modifiers. Abstraction hides design complexity by exposing only essential features via abstract classes/interfaces.
+
+Q4: Breaking encapsulation  
+Q: If you make fields public, what problems arise?
+A: Direct modification without validation, loss of control, tight coupling, harder maintenance, and security risks (e.g., anyone can set balance = ‑999).
+
+Q5: Real‑world usage  
+Q: In a banking system, why is encapsulation critical for handling account balances?
+A: It prevents unauthorized direct changes. Deposits/withdrawals must go through methods that enforce rules (e.g., no overdraft, minimum balance). This ensures data integrity and security.
+
+Q6: Immutable classes  
+Q: How does encapsulation help in creating immutable classes like String?
+A: By making fields private and not providing setters, you prevent external modification. Encapsulation ensures once the object is created, its state cannot be changed.
+
+🎯Here are two tricky encapsulation questions with answers — crisp and interview‑style:
+
+⚡ Question 1:
+If a field is declared private but you expose both a getter and a setter, is the data still hidden? How does encapsulation help here?
+
+Answer:
+
+The field is hidden from direct access (you can’t do obj.age = 25;).
+
+Encapsulation still helps because you can add validation logic in the setter.
+
+Example:
+
+java
+public void setAge(int age) {
+    if (age < 0) throw new IllegalArgumentException("Age cannot be negative");
+    this.age = age;
+}
+So even though external code can modify the value, it must follow the rules enforced by the class.
+
+⚡ Question 2:
+How does encapsulation help in creating immutable classes like String?
+
+Answer:
+
+By making fields private and not providing setters, you prevent external modification.
+
+Any “modification” returns a new object instead of changing the existing one.
+
+Example:
+
+java
+final class Person {
+    private final String name;
+    Person(String name) { this.name = name; }
+    public String getName() { return name; }
+    // No setter → immutable
+}
+Encapsulation ensures the internal state cannot be altered once constructed, which is why String objects are immutable.
+
+link:https://www.geeksforgeeks.org/java/encapsulation-in-java/
