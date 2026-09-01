@@ -55,3 +55,6 @@ Q6: Can you use this in a static nested class?
 this refers to the nested class object itself, not the outer class.
 
 Outer class object must be created explicitly.
+
+
+link : https://www.geeksforgeeks.org/java/java-this-keyword/
